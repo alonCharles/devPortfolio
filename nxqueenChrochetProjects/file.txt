@@ -1,0 +1,6 @@
+Application Overview
+Simple Web App to help keep track of NxQueen's Chrochet Projects
+
+Application Features
+Allows User to create, read, update and delete Client projects.
+User can search and filter projects, mark them as in progress, pending, or complete
