@@ -4,3 +4,16 @@ Simple Web App to help keep track of NxQueen's Chrochet Projects
 Application Features
 Allows User to create, read, update and delete Client projects.
 User can search and filter projects, mark them as in progress, pending, or complete
+project form:
+Client Name
+Product Name
+Project Cost
+Time Estimate
+Project Status
+Project Notes
+
+Card Display:
+Client Name + Product Name in Heading
+project cost and time estimate as h2 or h3
+project status radio checkbox
+project notes 
