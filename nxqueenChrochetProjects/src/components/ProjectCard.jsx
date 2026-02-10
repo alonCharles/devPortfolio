@@ -8,8 +8,8 @@ const ProjectCard = ({clientName, productName, cost, time, status, notes}) => {
             </header>
 
             <section className="project_details">
-                <p className="project_cost">{cost}</p>
-                <p className="project_time">{time}</p>
+                <p className="project_cost">Price: ${cost}</p>
+                <p className="project_time">Time Estimate: {time}</p>
             </section>
 
             <footer className="project_notes">{notes}</footer>

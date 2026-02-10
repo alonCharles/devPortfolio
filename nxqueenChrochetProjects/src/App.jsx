@@ -1,4 +1,5 @@
 import ProjectCard from "./components/ProjectCard";
+import ProjectForm from "./components/ProjectForm";
 
 function App() {
   let clientName = 'Sample'
@@ -10,6 +11,10 @@ function App() {
 
   return (
     <>
+      <header className="banner">
+
+      </header>
+      <ProjectForm/>
       <ProjectCard clientName={clientName} productName={productName} cost={cost} time={time} status={status} notes={notes} />
     </>
   )
