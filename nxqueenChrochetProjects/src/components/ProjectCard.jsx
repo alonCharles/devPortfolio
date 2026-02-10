@@ -7,7 +7,7 @@ const ProjectCard = ({clientName, productName, cost, time, status, notes}) => {
                 <span className="project_status">{status}</span>
             </header>
 
-            <section className="project-details">
+            <section className="project_details">
                 <p className="project_cost">{cost}</p>
                 <p className="project_time">{time}</p>
             </section>

@@ -22,3 +22,40 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.project_title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project_status {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #e5f2ff;
+  color: #1d4ed8;
+  white-space: nowrap;
+}
+
+.project_details {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  color: #555;
+}
+
+.project_cost{
+  font-weight: 600;
+}
+
+.project_time{
+  font-style: italic;
+}
+
+.project_notes {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #333;
+}
