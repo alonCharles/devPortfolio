@@ -1,3 +1,4 @@
+import NavBar from "./components/Navbar";
 import ProjectCard from "./components/ProjectCard";
 import ProjectForm from "./components/ProjectForm";
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       <header className="banner">
-
+          <NavBar/>
       </header>
       <ProjectForm/>
       <ProjectCard clientName={clientName} productName={productName} cost={cost} time={time} status={status} notes={notes} />
