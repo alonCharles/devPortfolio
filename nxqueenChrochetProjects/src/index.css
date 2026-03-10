@@ -1,8 +1,16 @@
 /* Base reset for consistency */
+
+/* color scheme:
+  #f29ca3
+  #de4d86
+  #053c5e
+  #f7cacd
+  #84e6f8
+*/
 * {
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f29ca3;
+  background-color: #de4d86;
 }
 
 .project_card {
@@ -90,7 +98,7 @@
   max-width: 600px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background-color: #ffffff;
+  background-color: #f7cacd;
   border-radius: 8px;
   border: 1px solid #e5e7eb; /* light gray */
 }
@@ -100,15 +108,16 @@
 .project_form fieldset,
 .project_form textarea {
   margin-bottom: 1.25rem;
+  padding: 1.25rem;
 }
 
 /* Label styling */
 .project_form label {
-  /* display: block; */
+  display: block;
   margin-bottom: 0.4rem;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #374151;
+  color: whitesmoke;
 }
 
 /* Inputs & textarea */
@@ -120,14 +129,14 @@
   font-size: 0.95rem;
   border-radius: 6px;
   border: 1px solid #d1d5db;
-  background-color: #fff;
+  background-color: #f7cacd;
 }
 
 /* Focus states (accessibility) */
 .project_form input:focus,
 .project_form textarea:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #84e6f8;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
@@ -139,16 +148,17 @@
 
 /* Fieldset styling */
 .project_form fieldset {
-  border: 1px solid #d1d5db;
+  border: 5px solid whitesmoke;
   border-radius: 6px;
   padding: 1rem;
+  background-color: #f7cacd;
 }
 
 .project_form legend {
   padding: 0 0.5rem;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #374151;
+  color: whitesmoke;
 }
 
 /* Radio group layout */
