@@ -3,33 +3,45 @@ import ProjectCard from "./components/ProjectCard";
 import ProjectForm from "./components/ProjectForm";
 
 function App() {
-  const [project, setProject] = useState({
-        clientName: '',
-        productName: '',
-        cost:0,
-        time:'',
-        status:'',
-        notes:''
-  })
+  const [projectList, setProjectList] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMode, setModalMode] = useState("add");
 
-  const [projectList, setProjectList] = useState([])
-
-  let clientName = 'Sample'
-  let productName = 'Beanie'
-  let cost = 80
-  let time = '2 weeks'
-  let status = 'pending'
-  let notes = 'got yarn, working on it now'
+  const handleOpen = (mode) => {
+    setIsOpen(true);
+    setModalMode(mode);
+    console.log(mode);
+  };
+  console.log(projectList);
 
   return (
     <>
       <header className="banner">
-          <h3 className="pageHeading">NxQueen Chrochet Projects</h3>
+        <h3 className="pageHeading">NxQueen Chrochet Projects</h3>
+        <button onClick={() => handleOpen("add")}>Add Project</button>
       </header>
-      <ProjectForm project={project} setProject={setProject} />
-      <ProjectCard clientName={clientName} productName={productName} cost={cost} time={time} status={status} notes={notes} />
+      <ProjectForm
+        projectList={projectList}
+        setProjectList={setProjectList}
+        isOpen={isOpen}
+        mode={modalMode}
+         onClose={() => setIsOpen(false)}
+      />
+      {projectList
+        ? projectList.map((p) => (
+            <ProjectCard
+              clientName={p.clientName}
+              productName={p.productName}
+              cost={p.cost}
+              time={p.time}
+              status={p.status}
+              notes={p.notes}
+              handleOpen={handleOpen}
+            />
+          ))
+        : null}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

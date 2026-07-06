@@ -1,5 +1,5 @@
 
-const ProjectCard = ({clientName, productName, cost, time, status, notes}) => {
+const ProjectCard = ({clientName, productName, cost, time, status, notes, handleOpen}) => {
     return (
         <article className="project_card">
             <header className="project_header">
@@ -13,6 +13,7 @@ const ProjectCard = ({clientName, productName, cost, time, status, notes}) => {
             </section>
 
             <footer className="project_notes">{notes}</footer>
+            <button onClick={() => handleOpen('edit')}>Edit Project</button>
         </article>
     )
 }

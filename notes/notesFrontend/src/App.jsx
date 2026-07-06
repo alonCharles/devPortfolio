@@ -2,7 +2,6 @@ import { useState } from "react"
 import ModalForm from "./components/ModalForm"
 import Navbar from "./components/Navbar"
 import Tablelist from "./components/Tablelist"
-import Test from "../../notesBackend/src/Test";
 
 
 function App() {
