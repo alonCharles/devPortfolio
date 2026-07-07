@@ -7,10 +7,9 @@ export const createUser = async  (userData) => {
     .insert([userData])
     .select()
 
-    console.log(process.env.SUPABASE_URL)
 
-    if (error) console.log('error inserting', error.message)
-        console.log(data)
+    if (error) console.log('error inserting', error)
+        return data
 }
 
 export const getUsers = async () => {
@@ -18,8 +17,9 @@ export const getUsers = async () => {
     .from('users')
     .select("*")
 
-    if (error) console.log('error getting users', error.message)
+    if (error) console.log('error getting users', error)
         console.log(data)
+    return data
 }
 
 export const updateUser = async (id, update) => {

@@ -14,7 +14,7 @@ function App() {
   useEffect(()=>{
     axios.get('http://localhost:3000/api/users')
     .then((response)=>{
-      setUserData(response)
+      setUserData(response.data)
     })
     .catch((error)=>{
       console.log(error)
@@ -34,12 +34,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-      const response = await axios.post('http://localhost3000/api/users',{
-        headers:{
-          'Content-Type': 'application/JSON'
-        },
-        body: JSON.stringify(newUser)
-      })
+      const response = await axios.post('http://localhost:3000/api/users',newUser)
     } 
     catch (error){
         console.log(error)
