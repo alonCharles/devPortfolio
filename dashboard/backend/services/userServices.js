@@ -1,4 +1,4 @@
-import supabase from "../config/supabaseClient.js"
+import supabase from "../lib/supabaseClient.js"
 import dotenv from 'dotenv'
 
 export const createUser = async  (userData) => {
