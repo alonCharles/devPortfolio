@@ -3,11 +3,10 @@ import { createUser, updateUser, getUsers, deleteUser } from "../services/userSe
 export const addUser = async (req,res) => {
     try{
         const newUser = req.body
-    const userData = await createUser(newUser)
-    console.log(userData)
+    const {userData, error} = await createUser(newUser)
     res.status(201).json(userData)
     } catch(error) {
-        console.log(error)
+        res.status(434).json({error:error.message})
     }
 }
 

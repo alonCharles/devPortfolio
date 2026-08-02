@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios'
+import supabase from '../config/supabaseClient'
 
-export const LoginPage = () => {
+
+export const LoginPage = ({handleSession }) => {
   const [loginData, setLoginData] = useState({
-    first_name: "",
-    last_name: "",
     email: "",
-    password: "",
+    password: ""
   });
+  
 
   const handleLoginData = (e) => {
     const { name, value } = e.target;
@@ -16,48 +18,39 @@ export const LoginPage = () => {
     }));
   };
 
+  const logout = async () => {
+   
+  }
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(
-    //     "http://localhost:3000/api/users",
-    //     loginData,
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const response = await axios.post("http://localhost:3000/api/login",loginData);
+      console.log(response)
+      const data = response.data
+      handleSession(data.access_token, data.refresh_token)
+
+      await supabase.auth.setSession({
+        access_token: data.access_token,
+        refresh_token:data.refresh_token
+      })
+
+      
+
+    } catch (error) {
+      console.log(error);
+    }
      
-    console.log(loginData)
 
     setLoginData({
-      first_name: "",
-      last_name: "",
       email: "",
-      password: "",
-      role: "",
+      password: ""
     });
   };
 
   return (
     <form onSubmit={handleLogin}>
-      <label htmlFor="firstName">
-        <input
-          type="text"
-          name="first_name"
-          onChange={handleLoginData}
-          value={loginData.first_name}
-          placeholder="First Name"
-        />
-      </label>
-      <label htmlFor="lastName">
-        <input
-          type="text"
-          name="last_name"
-          onChange={handleLoginData}
-          value={loginData.last_name}
-          placeholder="Last Name"
-        />
-      </label>
       <label htmlFor="email">
         <input
           type="email"
@@ -77,6 +70,8 @@ export const LoginPage = () => {
         />
       </label>
       <button type="submit" >Login </button>
+      <button onClick={logout} >logout</button>
     </form>
+    
   );
 };

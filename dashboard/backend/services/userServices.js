@@ -1,15 +1,35 @@
-import supabase from "../lib/supabaseClient.js"
-import dotenv from 'dotenv'
+import {adminClient} from '../config/supabaseClient.js'
 
 export const createUser = async  (userData) => {
-    const {data, error} = await supabase
-    .from('users')
-    .insert([userData])
-    .select()
+    const {data: authData, error:authError} = await adminClient.auth.admin.createUser({
+        email: userData.email,
+        password:userData.password
+    })
+    
 
+    if (authError) {
+        return authError
+    }
+    
 
-    if (error) console.log('error inserting', error)
-        return data
+        const {data:profileData, error:profileError} = await adminClient
+        .from('profiles')
+        .insert({
+            id: authData.user.id,
+            email:userData.email,
+            first_name:userData.first_name,
+            last_name:userData.last_name,
+            role_id: userData.role_id
+        })
+        .select()
+        .single()
+
+        if (profileError) {
+            await adminClient.auth.admin.deleteUser(authData.user.id);
+            return profileError;
+        }
+
+            return profileData
 }
 
 export const getUsers = async () => {

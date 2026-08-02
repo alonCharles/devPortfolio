@@ -1,17 +1,29 @@
 export const Permissions = {
-  VIEW_DASHBOARD: "dashboard:view",
+  USERS: {
+    CREATE: "users:create",
+    VIEW: "users:view",
+    EDIT: "users:update",
+    DELETE: "users:delete",
+  },
 
-  VIEW_CUSTOMERS: "customers:view",
-
-  CREATE_CUSTOMERS: "customers:create",
-
-  DELETE_CUSTOMERS: "customers:delete",
-
-  APPROVE_TRANSACTION: "transaction:approve",
-
-  CREATE_USERS: "users:create",
-
-  EDIT_USERS: "users:update",
-
-  DELETE_USERS:"users:delete"
+  DASHBOARD: {
+    VIEW: "dashboard:view",
+  },
+  CUSTOMERS: {
+    CREATE: "customers:create",
+    VIEW: "customers:view",
+    EDIT: "customers:update",
+    DELETE: "customers:delete",
+  },
+  ACCOUNTS: {
+    CREATE: "accounts:create",
+    VIEW: "accounts:view",
+    DELETE: "accounts:close",
+  },
+  TRANSACTIONS: {
+    CREATE: "transactions:create",
+    VIEW: "transactions:view",
+    APPROVE: "transactions:approve",
+    REJECT: "transactions:reject",
+  },
 };

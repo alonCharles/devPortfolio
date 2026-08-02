@@ -6,8 +6,6 @@ export const env = {
 
     port: process.env.PORT,
 
-    frontendUrl: process.env.FRONTEND_URL,
-
     nodeEnv: process.env.NODE_ENV,
 
     supabaseUrl: process.env.SUPABASE_URL,

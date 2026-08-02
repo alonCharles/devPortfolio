@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import supabase from "../config/supabaseClient";
 
 export const AddUser = () => {
   const [newUser, setNewUser] = useState({
@@ -7,7 +8,7 @@ export const AddUser = () => {
     last_name: "",
     email: "",
     password: "",
-    role: "",
+    role_id: "",
   });
 
   const handleAdd = (e) => {
@@ -20,20 +21,31 @@ export const AddUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const {data: {session}} = await supabase.auth.getSession()
+      if(!session) console.log('no session')
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users",
-        newUser,
+        
+          newUser,
+          {
+            headers:{
+            Authorization: `Bearer ${session.access_token}`
+          }
+        }
+        
       );
+      console.log(response)
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
     setNewUser({
       first_name: "",
       last_name: "",
       email: "",
       password: "",
-      role: "",
+      role_id: 0,
     });
   };
   return (
@@ -56,10 +68,10 @@ export const AddUser = () => {
           placeholder="Last Name"
         />
       </label>
-      <label htmlFor="role">
+      <label htmlFor="role_id">
         <input
-          type="text"
-          name="role"
+          type="number"
+          name="role_id"
           onChange={handleAdd}
           value={newUser.role}
           placeholder="Role"
