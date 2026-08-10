@@ -27,12 +27,11 @@ return async (req,res, next) => {
             .maybeSingle()
             
             if(permissionsError) {
-                console.log('Permissions check error', permissionsError)
-                res.status(500).json({message:'Permissions Check Failed'})
+               return res.status(500).json({message:'Permissions Check Failed'})
             }
 
             if(!permission) {
-                res.status(403).json({message:'User Not Permitted'})
+               return  res.status(403).json({message:'User Not Permitted'})
             }
          
        next()         

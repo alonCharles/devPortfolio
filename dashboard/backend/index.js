@@ -4,7 +4,9 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import userRoutes from './routes/userRoutes.js';
-import loginRoutes from './routes/loginRoutes.js'
+import loginRoutes from './routes/loginRoutes.js';
+import logoutRoute from './routes/logoutRoute.js'
+import profileRoute from './routes/profileRoute.js'
 import { env } from './config/env.js';
 
 const app = express()
@@ -23,6 +25,8 @@ app.use(rateLimit({
 
 app.use('/api', userRoutes)
 app.use('/api', loginRoutes)
+app.use('/api', profileRoute)
+app.use('/api', logoutRoute)
 
 app.get('/',(req,res)=> {
     res.send("api is running")

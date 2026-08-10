@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import supabase from '../config/supabaseClient'
+import { useAuth } from "../hooks/useAuth";
 
 
 export const LoginPage = ({handleSession }) => {
@@ -8,6 +9,8 @@ export const LoginPage = ({handleSession }) => {
     email: "",
     password: ""
   });
+
+  const { login, profile } = useAuth()
   
 
   const handleLoginData = (e) => {
@@ -18,31 +21,19 @@ export const LoginPage = ({handleSession }) => {
     }));
   };
 
-  const logout = async () => {
-   
-  }
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/login",loginData);
-      console.log(response)
-      const data = response.data
-      handleSession(data.access_token, data.refresh_token)
-
-      await supabase.auth.setSession({
-        access_token: data.access_token,
-        refresh_token:data.refresh_token
-      })
-
-      
+      await login(loginData)
 
     } catch (error) {
-      console.log(error);
+        console.log("Status:", error.response?.status);
+        console.log("Server said:", error.response?.data);
     }
      
-
+console.log(profile)
     setLoginData({
       email: "",
       password: ""
@@ -50,7 +41,8 @@ export const LoginPage = ({handleSession }) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <>
+      <form onSubmit={handleLogin}>
       <label htmlFor="email">
         <input
           type="email"
@@ -70,8 +62,9 @@ export const LoginPage = ({handleSession }) => {
         />
       </label>
       <button type="submit" >Login </button>
-      <button onClick={logout} >logout</button>
     </form>
+  
+    </>
     
   );
 };

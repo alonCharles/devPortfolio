@@ -7,13 +7,12 @@ export const login = async (credentials) => {
     })
 
     if (error) {
-        const err = new Error('Invalid email or Password')
-        err.status = 401
-        throw (err)
+        return { user: null, session: null, error }
     }
 
     return {
         user:data.user,
-        session:data.session
+        session:data.session,
+        error:null
     }
 }

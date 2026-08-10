@@ -3,12 +3,13 @@ import {adminClient} from '../config/supabaseClient.js'
 export const createUser = async  (userData) => {
     const {data: authData, error:authError} = await adminClient.auth.admin.createUser({
         email: userData.email,
-        password:userData.password
+        password:userData.password,
+        email_confirm:true
     })
     
 
     if (authError) {
-        return authError
+        return {userData:null,error:authError}
     }
     
 
@@ -26,10 +27,10 @@ export const createUser = async  (userData) => {
 
         if (profileError) {
             await adminClient.auth.admin.deleteUser(authData.user.id);
-            return profileError;
+            return {userData:null, error:profileError};
         }
 
-            return profileData
+            return {userData:profileData, error:null}
 }
 
 export const getUsers = async () => {
